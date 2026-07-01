@@ -1,4 +1,5 @@
 from funciones_api.BCRA_API import precioUSD
+from base_de_datos.BDD import crearBDD
 import os
 
 
@@ -6,7 +7,7 @@ def main():
     salida = ""
     while salida != "0":
         limpiar_pantalla()
-        print("Convertidor de moneda (USD->ARS)")
+        print("Convertidor de moneda (USD->ARS o ARS->USD)")
         print("1- Ver cotizacion de USD")
         print("2- Convertir ARS a USD")
         print("3- Convertir USD a ARS")
@@ -54,4 +55,5 @@ def limpiar_pantalla():
 
 
 if __name__ == "__main__":
+    crearBDD()
     main()
