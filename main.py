@@ -1,5 +1,6 @@
+from base_de_datos.BDD import borrarCotizacion
 from funciones_api.BCRA_API import precioUSD
-from base_de_datos.BDD import crearBDD, agregarCotizacion, verCotizaciones
+from base_de_datos.BDD import crearBDD, agregarCotizacion, verCotizaciones, borrarCotizacion
 import os
 
 
@@ -12,6 +13,7 @@ def main():
         print("2- Convertir ARS a USD")
         print("3- Convertir USD a ARS")
         print("4- Ver historial de cotizaciones USD")
+        print("5- Borrar cotizacion")
         salida = input("Ingrese opcion (0 salida): ")
         if salida == '1':
             fecha, cotizacion = precioUSD()
@@ -46,9 +48,17 @@ def main():
             cotizaciones = verCotizaciones()
             limpiar_pantalla()
             for datos in cotizaciones:
-                print(f"Fecha: {datos.fecha}, Cotizacion: {datos.monto}\n")
-
+                print(f"Fecha: {datos.fecha}, Cotizacion: {datos.monto}")
             input("Presione enter para volver")
+        elif salida == '5':
+            cotizaciones = verCotizaciones()
+            limpiar_pantalla()
+            for datos in cotizaciones:
+                print(f"ID: {datos.id} Fecha: {datos.fecha} Cotizacion: {datos.monto}")
+            idBorrar = int(input("Indique ID de la cotizacion a borrar: "))
+            borrarCotizacion(idBorrar)
+            limpiar_pantalla()
+            input("Cotizacion borrada con exito, presion enter para volver")
         elif salida == "0":
             exit()
 

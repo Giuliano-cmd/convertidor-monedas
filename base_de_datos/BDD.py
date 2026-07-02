@@ -36,6 +36,14 @@ def agregarCotizacion(m, f):
         session.add(cotizacionNueva)
         session.commit()
 
+def borrarCotizacion(idBorrar):
+    Session = sessionmaker(engine)
+    with Session() as session:
+        borrarCotizacion = session.scalar(select(Cotizacion).where(Cotizacion.id == idBorrar))
+        
+        session.delete(borrarCotizacion)
+        session.commit()
+
 def verCotizaciones():
     Session = sessionmaker(engine)
     
