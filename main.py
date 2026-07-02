@@ -1,5 +1,5 @@
 from funciones_api.BCRA_API import precioUSD
-from base_de_datos.BDD import crearBDD
+from base_de_datos.BDD import crearBDD, agregarCotizacion, verCotizaciones
 import os
 
 
@@ -8,13 +8,17 @@ def main():
     while salida != "0":
         limpiar_pantalla()
         print("Convertidor de moneda (USD->ARS o ARS->USD)")
-        print("1- Ver cotizacion de USD")
+        print("1- Ver cotizacion actual del USD")
         print("2- Convertir ARS a USD")
         print("3- Convertir USD a ARS")
+        print("4- Ver historial de cotizaciones USD")
         salida = input("Ingrese opcion (0 salida): ")
         if salida == '1':
-            limpiar_pantalla()
             fecha, cotizacion = precioUSD()
+
+            agregarCotizacion(cotizacion, fecha)
+            limpiar_pantalla()
+
             print(f"Fecha: {fecha}")
             print(f"Cotizacion: {cotizacion}")
             input("Presione enter para volver")
@@ -37,6 +41,13 @@ def main():
             print(f"Cotizacion USD: {cotizacion}")
             print(f"Cantidad de USD: {monto}")
             print(f"Cantidad de ARS: {total}")
+            input("Presione enter para volver")
+        elif salida == '4':
+            cotizaciones = verCotizaciones()
+            limpiar_pantalla()
+            for datos in cotizaciones:
+                print(f"Fecha: {datos.fecha}, Cotizacion: {datos.monto}\n")
+
             input("Presione enter para volver")
         elif salida == "0":
             exit()

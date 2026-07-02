@@ -22,7 +22,23 @@ class Cotizacion(Base):
 
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     monto: Mapped[float]
-    fecha: Mapped[date]
+    fecha: Mapped[str]
 
 def crearBDD():
     Base.metadata.create_all(engine)
+
+def agregarCotizacion(m, f):
+    Session = sessionmaker(engine)
+    #print(type(f))
+    with Session() as session:
+        cotizacionNueva = Cotizacion(monto=m, fecha=f)
+
+        session.add(cotizacionNueva)
+        session.commit()
+
+def verCotizaciones():
+    Session = sessionmaker(engine)
+    
+    with Session() as session:
+        resultadoCotizaciones = session.scalars(select(Cotizacion)).all()
+        return resultadoCotizaciones
