@@ -1,6 +1,7 @@
 from base_de_datos.BDD import borrarCotizacion
 from funciones_api.BCRA_API import precioUSD
 from base_de_datos.BDD import crearBDD, agregarCotizacion, verCotizaciones, borrarCotizacion
+import time
 import os
 
 
@@ -27,17 +28,22 @@ def main():
         elif salida == '2':
             limpiar_pantalla()
             fecha, cotizacion = precioUSD()
-            monto = int(input("Ingrese monto en ARS: "))
-            total = str(convertirARS(monto, cotizacion))
-            print(f"Fecha cotizacion USD: {fecha}")
-            print(f"Cotizacion USD: {cotizacion}")
-            print(f"Cantidad de ARS: {monto}")
-            print(f"Cantidad de USD: {total}")
-            input("Presione enter para volver")
+            try:
+                monto = float(input("Ingrese monto en ARS: "))
+                total = str(convertirARS(monto, cotizacion))
+                print(f"Fecha cotizacion USD: {fecha}")
+                print(f"Cotizacion USD: {cotizacion}")
+                print(f"Cantidad de ARS: {monto}")
+                print(f"Cantidad de USD: {total}")
+            except ValueError:
+                print("Error: valor invalido, ingrese un numero.")
+                time.sleep(2)
+            else:
+                input("Presione enter para volver")
         elif salida == '3':
             limpiar_pantalla()
             fecha, cotizacion = precioUSD()
-            monto = int(input("Ingrese monto en USD: "))
+            monto = float(input("Ingrese monto en USD: "))
             total = str(convertirUSD(monto, cotizacion))
             print(f"Fecha cotizacion USD: {fecha}")
             print(f"Cotizacion USD: {cotizacion}")
@@ -61,6 +67,7 @@ def main():
             input("Cotizacion borrada con exito, presion enter para volver")
         elif salida == "0":
             exit()
+
 
 def convertirARS(m, c) -> float:
     cantUSD = m/c
