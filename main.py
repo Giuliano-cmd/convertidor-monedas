@@ -1,6 +1,8 @@
 from base_de_datos.BDD import borrarCotizacion
 from funciones_api.BCRA_API import precioUSD
 from base_de_datos.BDD import crearBDD, agregarCotizacion, verCotizaciones, borrarCotizacion
+from interfaz.interfaz import vistaMenu
+import tkinter as tk
 import time
 import os
 
@@ -84,4 +86,7 @@ def limpiar_pantalla():
 
 if __name__ == "__main__":
     crearBDD()
-    main()
+    #main()
+    root = tk.Tk()
+    vistaMenu(root)
+    root.mainloop()
