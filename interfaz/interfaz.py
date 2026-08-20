@@ -72,7 +72,7 @@ class vistaARSUSD():
         self.ventana.title("Convertidor de ARS a USD")
 
 
-        self.etiqueta_cotizacion = ttk.Label(self.ventana, text="Precio actual del dolar")
+        self.etiqueta_cotizacion = ttk.Label(self.ventana, text="Ingrese monto en ARS")
         self.entrada_ARS = ttk.Entry(self.ventana)
 
         self.etiqueta_cotizacion.pack(padx=10, pady=10)
@@ -84,7 +84,7 @@ class vistaUSDARS():
         self.ventana.title("Convertidor de USD a ARS")
 
 
-        self.etiqueta_cotizacion = ttk.Label(self.ventana, text="Precio actual del dolar")
+        self.etiqueta_cotizacion = ttk.Label(self.ventana, text="Ingrese monto en USD")
         self.entrada_ARS = ttk.Entry(self.ventana)
 
         self.etiqueta_cotizacion.pack(padx=10, pady=10)

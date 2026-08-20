@@ -88,5 +88,5 @@ if __name__ == "__main__":
     crearBDD()
     #main()
     root = tk.Tk()
-    vistaMenu(root)
+    vista = vistaMenu(root)
     root.mainloop()
